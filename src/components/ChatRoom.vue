@@ -3,7 +3,7 @@
         <h3>Welcome to room: {{ chatId }}</h3>
         <user>
             <template #user="{ user }">
-                <ul v-if="messages.length !== 0">
+                <ul v-if="areThereMessages">
                     <li v-for="message of messages" :key="message.id">
                         <chat-message 
                             :message="message"
@@ -12,7 +12,9 @@
                     </li>
                 </ul>
 
-                <label v-if="messages.length === 0" for="message">Enter new text message to start the chat:</label>
+                <label for="message">
+                    Enter new text message{{ areThereMessages ? '' : ', to start the chat'}}:
+                </label>
                 <input v-model="newMessageText" class="input" />
                 <hr>
                 <h5>Record Audio</h5>
@@ -64,6 +66,9 @@ export default {
         },
         newAudioURL() {
             return URL.createObjectURL(this.newAudio)
+        },
+        areThereMessages() {
+            return this.messages.length !== 0
         }
     },
     firestore() {
