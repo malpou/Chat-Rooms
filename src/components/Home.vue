@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Chat Rooms</h1>
         <user>
             <template #user="{ user }">
                 <div v-if="user">
