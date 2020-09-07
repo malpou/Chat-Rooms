@@ -1,15 +1,17 @@
 <template>
     <div>
-        <h3 v-if="chats.length != 0">{{ chats.length == 1 ? 'Chat Room' : 'Chat Rooms'}}</h3>
-        <ul>
-            <li v-for="chat of chats" :key="chat.id">
+        <v-row>
+                <!--v-label v-if="chats.length != 0">{{ chats.length == 1 ? 'Chat Room' : 'Chat Rooms' }}</v-label-->
+                <v-btn text large color="primary" @click="createChatRoom()">Create New Chat Room</v-btn>
+        </v-row>
+        
+        <v-row v-for="chat of chats" :key="chat.id">
+            <v-chip class="ma-2">
                 <router-link :to="{ name: 'chat', params: { id: chat.id } }">
                     {{ chat.id }}
                 </router-link>
-            </li>
-        </ul>
-
-        <button class="button" @click="createChatRoom()">Create New Chat Room</button>
+            </v-chip>
+        </v-row>
     </div>
 </template>
 

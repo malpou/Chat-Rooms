@@ -3,13 +3,16 @@ import App from './App.vue'
 import { firestorePlugin } from 'vuefire'
 import VueRouter from 'vue-router';
 import VueCompositionApi from "@vue/composition-api";
+import Vuetify from 'vuetify';
 
 Vue.use(firestorePlugin);
 Vue.use(VueRouter);
 Vue.use(VueCompositionApi);
+Vue.use(Vuetify);
 
 import Home from './components/Home'
 import ChatRoom from './components/ChatRoom'
+import vuetify from './plugins/vuetify';
 
 const router = new VueRouter({
   mode: 'history',
@@ -23,5 +26,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(App),
+  vuetify,
+  render: h => h(App)
 }).$mount('#app')
