@@ -12,15 +12,10 @@
           </li>
         </ul>
 
-        <label for="message">
-          Enter new text message{{
-            areThereMessages ? "" : ", to start the chat"
-          }}:
-        </label>
-
         <v-text-field
           v-on:keyup.enter="addMessage(user.uid)"
           v-model="newMessageText"
+          :label="inputLabel"
           outlined
           filled
           dense
@@ -86,6 +81,9 @@ export default {
     areThereMessages() {
       return this.messages.length !== 0;
     },
+    inputLabel(){
+      return `Enter new text message${this.areThereMessages ? '' : ', to start the chat'}`
+    }
   },
   firestore() {
     return {
